@@ -37,13 +37,6 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/post', (req, res) => {
-
-    //console.log("Body: ", req.body);
-    /**
-     * Test Case:
-     * {"user":{"name": "jack","email": "jack@gmail.com","password": "jackPass"}}
-     * */
-
     var name = req.body.name;
     var email = req.body.email;
     var password = req.body.password;
