@@ -4,8 +4,23 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var app = express();
 
+/*var cors = require('cors');
+app.options('http://localhost:4200', cors());
+var allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+    // intercept OPTIONS method
+    if ('OPTIONS' == req.method) {
+        res.send(200);
+    }
+    else {
+        next();
+    }
+};
+app.use(allowCrossDomain);*/
 // Add headers
 /*
 app.use(function (req, res, next) {
@@ -42,17 +57,19 @@ app.use(cors(corsOptions));
 app.options('*', cors());
 */
 
-const corsOptions = {
+/*const corsOptions = {
     origin: 'http://localhost:4200',
     method: ['GET', 'POST'],
     //allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'Accept', 'X-Requested-With'],
     optionsSuccessStatus: 200 //Some legacy browsers (IE11, various SmartTVs) choke on 204,
     credentials: true
 };
-app.use(cors(corsOptions));
+app.use(cors(corsOptions));*/
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+
+var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
