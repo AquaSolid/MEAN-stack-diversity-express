@@ -2,10 +2,10 @@ var express = require('express');
 var router = express.Router();
 
 var conn = require('../connect')();
-var cors = require('cors');
+//var cors = require('cors');
 var table = "users";
 
-router.get('/', cors(), (req, res, next) => {
+router.get('/', (req, res, next) => {
     var query = `SELECT * FROM ${table}`;
     console.log(query);
 
@@ -15,7 +15,7 @@ router.get('/', cors(), (req, res, next) => {
     });
 });
 
-router.post('/post', cors(), (req, res) => {
+router.post('/post', (req, res) => {
 
     //console.log("Body: ", req.body);
     /**
@@ -23,9 +23,9 @@ router.post('/post', cors(), (req, res) => {
      * {"user":{"name": "jack","email": "jack@gmail.com","password": "jackPass"}}
      * */
 
-    var name = req.body.user.name;
-    var email = req.body.user.email;
-    var password = req.body.user.password;
+    var name = req.body.name;
+    var email = req.body.email;
+    var password = req.body.password;
 
     var query = `INSERT INTO ${table} VALUES (null, "${name}", "${email}", "${password}")`;
     console.log(query);
@@ -36,7 +36,7 @@ router.post('/post', cors(), (req, res) => {
     });
 });
 
-router.get('/:search/', cors(), function (req, res, next) {
+router.get('/:search/', (req, res, next) => {
 
     var search = req.params.search;
     var query = "";
